@@ -45,6 +45,6 @@ document.getElementById('checkCodeButton').addEventListener('click', function() 
   window.location.href = selectedSubject + '.html'; // e.g., english.html
  } else {
   // Incorrect code.  Show an error message.
-  alert('Incorrect code. Please try again.');
+  alert('Select the correct subject and input the correct code');
  }
 });
