@@ -568,3 +568,8 @@ h1{
 .code-input.invalid {
   border-color: red;
 }
+p{
+ text-align: center;
+ color: cadetblue;
+ margin-top: 20px;
+}

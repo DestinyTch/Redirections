@@ -81,3 +81,19 @@ document.getElementById('checkCodeButton').addEventListener('click', function() 
   }, 3000);
  }
 });
+
+let touchStartY = 0;
+
+document.addEventListener('touchstart', function(event) {
+    touchStartY = event.touches[0].clientY;
+});
+
+document.addEventListener('touchend', function(event) {
+    const touchEndY = event.changedTouches[0].clientY;
+    const deltaY = touchEndY - touchStartY;
+
+    // Check if it was a downward swipe and long enough
+    if (deltaY > 50) { // Adjust 50 to your desired sensitivity
+        location.reload();
+    }
+});
