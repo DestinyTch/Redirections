@@ -568,10 +568,3 @@ h1{
 .code-input.invalid {
   border-color: red;
 }
-
-/* Responsive adjustments */
-@media (max-width: 400px) {
-  .access-container {
-    max-width: 90%;
-  }
-}
