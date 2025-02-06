@@ -1,10 +1,15 @@
 document.getElementById('checkCodeButton').addEventListener('click', function() {
+ const checkButton = document.getElementById('checkCodeButton'); // Get the button element
+ const originalText = checkButton.textContent; // Store the original text
+
+ checkButton.textContent = 'Loading...'; // Change button text to "Loading..."
+ checkButton.disabled = true; // Disable the button to prevent multiple clicks
+
  const selectedSubject = document.querySelector('.subject-dropdown').value;
  const enteredCode = document.querySelector('.code-input').value;
 
- // Here's where you'll store your codes.  A good way is to use an object:
  const subjectCodes = {
-
+  
  english: '12345',
  mathematics: '67890',
  civic: '54321',
@@ -38,13 +43,41 @@ document.getElementById('checkCodeButton').addEventListener('click', function() 
  shorthand: '78901',
  handwriting: '34567',
  homemanagement: '89012',
-//...addallyoursubjectsandcodes
-};
+  // ... (your subject codes)
+ };
+
+ const popup = document.createElement('div');
+ popup.classList.add('popup');
+
+ const popupContent = document.createElement('div');
+ popupContent.classList.add('popup-content');
+ popup.appendChild(popupContent);
+
+ const message = document.createElement('p');
+ popupContent.appendChild(message);
+
+ const closeButton = document.createElement('button');
+ closeButton.textContent = 'Close';
+ closeButton.addEventListener('click', () => {
+  document.body.removeChild(popup);
+  checkButton.textContent = originalText; // Restore original button text
+  checkButton.disabled = false; // Enable the button
+ });
+ popupContent.appendChild(closeButton);
+
+ document.body.appendChild(popup);
+
  if (subjectCodes.hasOwnProperty(selectedSubject) && subjectCodes[selectedSubject] === enteredCode) {
-  // Correct code! Redirect to the subject's page.
-  window.location.href = selectedSubject + '.html'; // e.g., english.html
+  message.textContent = 'Success!';
+  setTimeout(() => {
+   window.location.href = selectedSubject + '.html';
+  }, 1500);
  } else {
-  // Incorrect code.  Show an error message.
-  alert('Select the correct subject and input the correct code');
+  message.textContent = 'Select the correct subject and input the correct code';
+  setTimeout(() => {
+   document.body.removeChild(popup);
+   checkButton.textContent = originalText; // Restore original button text
+   checkButton.disabled = false; // Enable the button
+  }, 3000);
  }
 });
